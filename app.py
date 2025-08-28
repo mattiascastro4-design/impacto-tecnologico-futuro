@@ -1,18 +1,14 @@
 import streamlit as st
 
-# -------------------------------
-# TÍTULO E INTRODUCCIÓN GENERAL
-# -------------------------------
+# ------------------ Título e introducción ------------------
 st.title("Impacto Tecnológico Futuro")
 
 st.write("""
-Este proyecto muestra cómo las nuevas tecnologías están transformando sectores clave como Salud, Educación, Transporte y Empleo.
+Este proyecto muestra cómo las nuevas tecnologías están transformando sectores clave como Salud, Educación, Transporte y Empleo. 
 Selecciona un sector y activa la casilla para ver información detallada y una imagen representativa.
 """)
 
-# -------------------------------
-# DICCIONARIOS DE INFORMACIÓN
-# -------------------------------
+# ------------------ Diccionario de textos ------------------
 info_sectores = {
     "Salud": (
         "La telemedicina ha revolucionado el acceso a consultas médicas, especialmente en zonas rurales o con dificultad para desplazarse. "
@@ -40,22 +36,26 @@ info_sectores = {
     )
 }
 
+# ------------------ Imágenes representativas ------------------
 imagenes_sectores = {
-    "Salud": "https://i.imgur.com/u0NlC0S.jpg",
-    "Educación": "https://i.imgur.com/1WdOXgV.jpg",
-    "Transporte": "https://i.imgur.com/1QcBZoj.jpg",
-    "Empleo": "https://i.imgur.com/Y88o6rI.jpg"
+    "Salud": "https://cdn.pixabay.com/photo/2017/08/06/00/47/stethoscope-2584943_1280.jpg",
+    "Educación": "https://cdn.pixabay.com/photo/2016/03/27/21/16/learn-1280976_1280.jpg",
+    "Transporte": "https://cdn.pixabay.com/photo/2018/02/07/21/50/train-3139781_1280.jpg",
+    "Empleo": "https://cdn.pixabay.com/photo/2015/01/08/18/29/startup-593327_1280.jpg"
 }
 
-# -------------------------------
-# SELECCIÓN DE SECTOR
-# -------------------------------
-sector = st.selectbox("Selecciona un sector:", list(info_sectores.keys()))
+# ------------------ Selector de sector ------------------
+sector = st.selectbox("Selecciona un sector:", ["Salud", "Educación", "Transporte", "Empleo"])
+st.write(f"Has seleccionado el sector: **{sector}**")
 
-# -------------------------------
-# MOSTRAR INFORMACIÓN DETALLADA
-# -------------------------------
-if st.checkbox("Mostrar información detallada", key=f"check_{sector}"):
+# ------------------ Checkbox para mostrar info ------------------
+mostrar_info = st.checkbox("Mostrar información detallada")
+
+if mostrar_info:
     st.subheader(f"Información detallada sobre {sector}")
     st.write(info_sectores[sector])
-    st.image(imagenes_sectores[sector], caption=f"Ejemplo de tecnología en el sector {sector}", use_column_width=True)
+    st.image(
+        imagenes_sectores[sector],
+        caption=f"Ejemplo de tecnología en el sector {sector}",
+        use_container_width=True
+    )

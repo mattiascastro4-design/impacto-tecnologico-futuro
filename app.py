@@ -1,25 +1,18 @@
 import streamlit as st
 
-# Título de la app
+# -------------------------------
+# TÍTULO E INTRODUCCIÓN GENERAL
+# -------------------------------
 st.title("Impacto Tecnológico Futuro")
 
-# Descripción
 st.write("""
-Esta aplicación te permite explorar cómo las tecnologías emergentes impactan en diferentes sectores de la sociedad.
+Este proyecto muestra cómo las nuevas tecnologías están transformando sectores clave como Salud, Educación, Transporte y Empleo.
+Selecciona un sector y activa la casilla para ver información detallada y una imagen representativa.
 """)
 
-# Selección de sector
-sector = st.selectbox("Selecciona un sector", ["Salud", "Educación", "Transporte", "Empleo"])
-
-# Visualización base
-st.write(f"Has seleccionado el sector: **{sector}**")
-
-# Filtro básico
-filtro = st.checkbox("Mostrar información detallada")
-if filtro:
-    import streamlit as st
-
-# Diccionario con la información detallada de cada sector
+# -------------------------------
+# DICCIONARIOS DE INFORMACIÓN
+# -------------------------------
 info_sectores = {
     "Salud": (
         "La telemedicina ha revolucionado el acceso a consultas médicas, especialmente en zonas rurales o con dificultad para desplazarse. "
@@ -47,7 +40,6 @@ info_sectores = {
     )
 }
 
-# URLs de imágenes representativas para cada sector
 imagenes_sectores = {
     "Salud": "https://i.imgur.com/u0NlC0S.jpg",
     "Educación": "https://i.imgur.com/1WdOXgV.jpg",
@@ -55,22 +47,15 @@ imagenes_sectores = {
     "Empleo": "https://i.imgur.com/Y88o6rI.jpg"
 }
 
-# Título e introducción
-st.title("Impacto de las Nuevas Tecnologías en la Sociedad")
+# -------------------------------
+# SELECCIÓN DE SECTOR
+# -------------------------------
+sector = st.selectbox("Selecciona un sector:", list(info_sectores.keys()))
 
-st.write("""
-Este proyecto muestra cómo las nuevas tecnologías están transformando sectores clave como Salud, Educación, Transporte y Empleo.
-Selecciona un sector y activa la casilla para ver información detallada y una imagen representativa.
-""")
-
-# Selector de sector
-sector = st.selectbox("Selecciona un sector:", ["Salud", "Educación", "Transporte", "Empleo"])
-
-# Checkbox para mostrar info
-mostrar_info = st.checkbox("Mostrar información detallada")
-
-# Mostrar texto e imagen si está marcado el checkbox
-if mostrar_info:
+# -------------------------------
+# MOSTRAR INFORMACIÓN DETALLADA
+# -------------------------------
+if st.checkbox("Mostrar información detallada", key=f"check_{sector}"):
     st.subheader(f"Información detallada sobre {sector}")
     st.write(info_sectores[sector])
     st.image(imagenes_sectores[sector], caption=f"Ejemplo de tecnología en el sector {sector}", use_column_width=True)

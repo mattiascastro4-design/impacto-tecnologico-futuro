@@ -17,6 +17,8 @@ st.write(f"Has seleccionado el sector: **{sector}**")
 # Filtro básico
 filtro = st.checkbox("Mostrar información detallada")
 if filtro:
+    import streamlit as st
+
 # Diccionario con la información detallada de cada sector
 info_sectores = {
     "Salud": (
@@ -45,14 +47,15 @@ info_sectores = {
     )
 }
 
-# URLs de imágenes representativas para cada sector (imágenes generadas con DALL·E)
+# URLs de imágenes representativas para cada sector
 imagenes_sectores = {
-    "Salud": "https://i.imgur.com/u0NlC0S.jpg",        # Doctor con tecnología digital
-    "Educación": "https://i.imgur.com/1WdOXgV.jpg",   # Estudiantes con realidad virtual
-    "Transporte": "https://i.imgur.com/1QcBZoj.jpg",  # Vehículo autónomo en ciudad
-    "Empleo": "https://i.imgur.com/Y88o6rI.jpg"       # Personas teletrabajando con tecnología
+    "Salud": "https://i.imgur.com/u0NlC0S.jpg",
+    "Educación": "https://i.imgur.com/1WdOXgV.jpg",
+    "Transporte": "https://i.imgur.com/1QcBZoj.jpg",
+    "Empleo": "https://i.imgur.com/Y88o6rI.jpg"
 }
 
+# Título e introducción
 st.title("Impacto de las Nuevas Tecnologías en la Sociedad")
 
 st.write("""
@@ -60,10 +63,13 @@ Este proyecto muestra cómo las nuevas tecnologías están transformando sectore
 Selecciona un sector y activa la casilla para ver información detallada y una imagen representativa.
 """)
 
+# Selector de sector
 sector = st.selectbox("Selecciona un sector:", ["Salud", "Educación", "Transporte", "Empleo"])
 
+# Checkbox para mostrar info
 mostrar_info = st.checkbox("Mostrar información detallada")
 
+# Mostrar texto e imagen si está marcado el checkbox
 if mostrar_info:
     st.subheader(f"Información detallada sobre {sector}")
     st.write(info_sectores[sector])

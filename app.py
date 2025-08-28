@@ -17,13 +17,54 @@ st.write(f"Has seleccionado el sector: **{sector}**")
 # Filtro básico
 filtro = st.checkbox("Mostrar información detallada")
 if filtro:
-  if sector == "Salud":
-    st.write("Aquí va información detallada sobre Salud: avances en telemedicina, IA en diagnósticos, etc.")
-  elif sector == "Educación":
-    st.write("Aquí va información detallada sobre Educación: e-learning, realidad virtual, personalización del aprendizaje, etc.")
-  elif sector == "Transporte":
-    st.write("Aquí va información detallada sobre Transporte: vehículos autónomos, drones, optimización de rutas, etc.")
-  elif sector == "Empleo":
-    st.write("Aquí va información detallada sobre Empleo: automatización, nuevas profesiones, teletrabajo, etc.")
-else:
-  st.write("Activa el filtro para ver más detalles.")
+# Diccionario con la información detallada de cada sector
+info_sectores = {
+    "Salud": (
+        "La telemedicina ha revolucionado el acceso a consultas médicas, especialmente en zonas rurales o con dificultad para desplazarse. "
+        "La inteligencia artificial mejora los diagnósticos analizando imágenes médicas y detectando patrones que pueden pasar desapercibidos para el ojo humano. "
+        "Además, la robótica asiste en cirugías de alta precisión, aumentando la seguridad y eficiencia de los procedimientos. "
+        "La tecnología wearable permite el monitoreo constante de la salud, mejorando el cuidado preventivo."
+    ),
+    "Educación": (
+        "El e-learning democratiza el acceso a la educación, permitiendo que personas de todo el mundo aprendan a su ritmo. "
+        "La realidad virtual y aumentada crean entornos inmersivos que facilitan la comprensión de conceptos complejos. "
+        "La inteligencia artificial personaliza el aprendizaje, adaptando el contenido a las necesidades y habilidades de cada estudiante, fomentando un aprendizaje más efectivo y motivador. "
+        "Además, las plataformas colaborativas potencian el trabajo en equipo y el intercambio de conocimientos."
+    ),
+    "Transporte": (
+        "Los vehículos autónomos prometen reducir accidentes de tráfico y mejorar la eficiencia en el uso de energía. "
+        "Los drones se utilizan para entregas rápidas y para monitoreo en zonas difíciles de alcanzar. "
+        "Las aplicaciones de optimización de rutas permiten reducir tiempos de traslado y emisiones contaminantes, fomentando un transporte más sostenible. "
+        "Además, la integración de sistemas inteligentes en el transporte público mejora la experiencia del usuario y la gestión del tráfico."
+    ),
+    "Empleo": (
+        "La automatización y la robótica están transformando sectores industriales, liberando a las personas de tareas repetitivas y peligrosas. "
+        "Surgen nuevas profesiones relacionadas con la gestión de tecnologías avanzadas, análisis de datos y desarrollo de software. "
+        "El teletrabajo se ha consolidado como una modalidad flexible que facilita la conciliación de la vida laboral y personal, además de reducir costos y emisiones asociadas al transporte. "
+        "Sin embargo, también plantea retos en formación y adaptación."
+    )
+}
+
+# URLs de imágenes representativas para cada sector (imágenes generadas con DALL·E)
+imagenes_sectores = {
+    "Salud": "https://i.imgur.com/u0NlC0S.jpg",        # Doctor con tecnología digital
+    "Educación": "https://i.imgur.com/1WdOXgV.jpg",   # Estudiantes con realidad virtual
+    "Transporte": "https://i.imgur.com/1QcBZoj.jpg",  # Vehículo autónomo en ciudad
+    "Empleo": "https://i.imgur.com/Y88o6rI.jpg"       # Personas teletrabajando con tecnología
+}
+
+st.title("Impacto de las Nuevas Tecnologías en la Sociedad")
+
+st.write("""
+Este proyecto muestra cómo las nuevas tecnologías están transformando sectores clave como Salud, Educación, Transporte y Empleo.
+Selecciona un sector y activa la casilla para ver información detallada y una imagen representativa.
+""")
+
+sector = st.selectbox("Selecciona un sector:", ["Salud", "Educación", "Transporte", "Empleo"])
+
+mostrar_info = st.checkbox("Mostrar información detallada")
+
+if mostrar_info:
+    st.subheader(f"Información detallada sobre {sector}")
+    st.write(info_sectores[sector])
+    st.image(imagenes_sectores[sector], caption=f"Ejemplo de tecnología en el sector {sector}", use_column_width=True)
